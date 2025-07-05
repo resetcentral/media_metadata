@@ -1,45 +1,23 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/kelseyhightower/envconfig"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
+	"github.com/resetcentral/media_library/handlers"
+	"github.com/resetcentral/media_library/storage"
 )
 
-type DBConfig struct {
-	Host     string
-	Name     string
-	User     string
-	Password string
-}
-
 func main() {
-	var dbConfig DBConfig
-	err := envconfig.Process("db", &dbConfig)
+	err := storage.NewStorage()
 	if err != nil {
-		log.Fatal(err.Error())
+		log.Fatalln(err)
 	}
-	dsnFmt := "%s:%s@tcp(%s:3306)/%s?charset=utf8mb4&parseTime=True&loc=Local"
-	dsn := fmt.Sprintf(dsnFmt, dbConfig.User, dbConfig.Password, dbConfig.Host, dbConfig.Name)
-
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatalf("Failed to connect to DB %v\n", err)
-	}
-
-	db.AutoMigrate(&AudioMedia{})
-	db.AutoMigrate(&VideoMedia{})
 
 	router := gin.Default()
-	router.GET("/api/v1/media", getMedia)
-	router.GET("/api/v1/media/:id", getMediaByID)
-	router.POST("/api/v1/media", postMedia)
-	router.PUT("/api/v1/media/:id", putMedia)
-	router.PATCH("/api/v1/media/:id", patchMedia)
-	router.DELETE("/api/v1/media/:id", deleteMedia)
-
+	router.GET("/artist", handlers.GetAllArtists)
+	router.GET("/artist/:id", handlers.GetArtistByID)
+	router.POST("/artist", handlers.PostArtist)
+	router.DELETE("/artist/:id", handlers.DeleteArtist)
+	router.Run("localhost:8000")
 }
