@@ -8,22 +8,22 @@ import (
 
 type Studio struct {
 	gorm.Model
-	Name string `gorm:"unique"`
+	Name string `gorm:"uniqueIndex;size:256"`
 }
 
 type Artist struct {
 	gorm.Model
-	Name string `gorm:"unique"`
+	Name string `gorm:"uniqueIndex;size:256"`
 }
 
 type Tag struct {
 	gorm.Model
-	Value string `gorm:"unique"`
+	Value string `gorm:"uniqueIndex;size:256"`
 }
 
 type AudioMedia struct {
 	gorm.Model
-	Title         string
+	Title         string `gorm:"index;size:256"`
 	Description   string
 	FilePath      string `gorm:"unique"`
 	Studio        Studio
