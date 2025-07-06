@@ -12,7 +12,7 @@ import (
 )
 
 func GetAllArtists(c *gin.Context) {
-	artists, err := storage.DB.FindArtists()
+	artists, err := storage.DB.FindAllArtists()
 	if err != nil {
 		c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": "Failed to load artists"})
 		return
