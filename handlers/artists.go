@@ -11,8 +11,12 @@ import (
 	"github.com/resetcentral/media_library/storage"
 )
 
-func GetAllArtists(c *gin.Context) {
-	artists, err := storage.DB.FindAllArtists()
+func GetArtists(c *gin.Context) {
+	var artists []models.Artist
+	var err error
+
+	name := c.Query("name")
+	artists, err = storage.DB.FindArtists(name)
 	if err != nil {
 		c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": "Failed to load artists"})
 		return
@@ -29,7 +33,7 @@ func GetArtistByID(c *gin.Context) {
 	}
 
 	artist, err := storage.DB.FindArtistByID(id)
-	if err != nil {
+	if err != nil || artist.ID != uint(id) {
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message": "No artist found with that ID"})
 		return
 	}
@@ -42,6 +46,10 @@ func PostArtist(c *gin.Context) {
 	err := c.BindJSON(&artist)
 	if err != nil {
 		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "Invalid artist data"})
+		return
+	}
+	if artist.Name == "" {
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "'name' field is required"})
 		return
 	}
 
