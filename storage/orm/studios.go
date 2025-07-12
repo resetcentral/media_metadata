@@ -3,7 +3,7 @@ package orm
 import (
 	"fmt"
 
-	"github.com/resetcentral/media_library/models"
+	"github.com/resetcentral/media_metadata/models"
 )
 
 func (s MediaStorageGorm) CreateStudio(studios ...*models.Studio) error {

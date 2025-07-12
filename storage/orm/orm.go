@@ -7,7 +7,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 
-	"github.com/resetcentral/media_library/models"
+	"github.com/resetcentral/media_metadata/models"
 )
 
 type MediaStorageGorm struct {

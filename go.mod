@@ -1,4 +1,4 @@
-module github.com/resetcentral/media_library
+module github.com/resetcentral/media_metadata
 
 go 1.24.4
 

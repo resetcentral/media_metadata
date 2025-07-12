@@ -1,7 +1,7 @@
 package orm
 
 import (
-	"github.com/resetcentral/media_library/models"
+	"github.com/resetcentral/media_metadata/models"
 )
 
 func (s MediaStorageGorm) CreateMedia(medias ...*models.AudioMedia) error {

@@ -4,8 +4,8 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
-	"github.com/resetcentral/media_library/handlers"
-	"github.com/resetcentral/media_library/storage"
+	"github.com/resetcentral/media_metadata/handlers"
+	"github.com/resetcentral/media_metadata/storage"
 )
 
 func main() {

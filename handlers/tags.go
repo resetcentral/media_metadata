@@ -7,8 +7,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/resetcentral/media_library/models"
-	"github.com/resetcentral/media_library/storage"
+	"github.com/resetcentral/media_metadata/models"
+	"github.com/resetcentral/media_metadata/storage"
 )
 
 func GetTags(c *gin.Context) {

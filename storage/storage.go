@@ -1,8 +1,8 @@
 package storage
 
 import (
-	"github.com/resetcentral/media_library/models"
-	"github.com/resetcentral/media_library/storage/orm"
+	"github.com/resetcentral/media_metadata/models"
+	"github.com/resetcentral/media_metadata/storage/orm"
 )
 
 var DB MediaStorage
