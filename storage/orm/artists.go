@@ -1,6 +1,10 @@
 package orm
 
-import "github.com/resetcentral/media_library/models"
+import (
+	"fmt"
+
+	"github.com/resetcentral/media_library/models"
+)
 
 func (s MediaStorageGorm) CreateArtist(artists ...*models.Artist) error {
 	for _, artist := range artists {
@@ -13,21 +17,22 @@ func (s MediaStorageGorm) CreateArtist(artists ...*models.Artist) error {
 	return nil
 }
 
-func (s MediaStorageGorm) FindAllArtists() ([]models.Artist, error) {
+func (s MediaStorageGorm) FindArtists(search string) ([]models.Artist, error) {
 	var artists []models.Artist
-	result := s.db.Find(&artists)
+
+	db := s.db
+	if search != "" {
+		search = fmt.Sprintf("%%%s%%", search)
+		db = db.Where("name LIKE ?", search)
+	}
+
+	result := db.Find(&artists)
 	return artists, result.Error
 }
 
 func (s MediaStorageGorm) FindArtistByID(id int) (models.Artist, error) {
 	var artist models.Artist
 	result := s.db.Find(&artist, id)
-	return artist, result.Error
-}
-
-func (s MediaStorageGorm) FindArtistByName(name string) (models.Artist, error) {
-	var artist models.Artist
-	result := s.db.Where(&models.Artist{Name: name}).First(&artist)
 	return artist, result.Error
 }
 

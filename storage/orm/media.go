@@ -15,7 +15,7 @@ func (s MediaStorageGorm) CreateMedia(medias ...*models.AudioMedia) error {
 	return nil
 }
 
-func (s MediaStorageGorm) FindAllMedia() ([]models.AudioMedia, error) {
+func (s MediaStorageGorm) FindMedia() ([]models.AudioMedia, error) {
 	var media []models.AudioMedia
 	result := s.db.Find(&media)
 	return media, result.Error
@@ -24,12 +24,6 @@ func (s MediaStorageGorm) FindAllMedia() ([]models.AudioMedia, error) {
 func (s MediaStorageGorm) FindMediaByID(id int) (models.AudioMedia, error) {
 	var media models.AudioMedia
 	result := s.db.Find(&media, id)
-	return media, result.Error
-}
-
-func (s MediaStorageGorm) FindMedia(match models.AudioMedia) ([]models.AudioMedia, error) {
-	var media []models.AudioMedia
-	result := s.db.Find(&media, match)
 	return media, result.Error
 }
 

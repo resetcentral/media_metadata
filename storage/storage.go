@@ -9,27 +9,23 @@ var DB MediaStorage
 
 type MediaStorage interface {
 	CreateArtist(...*models.Artist) error
-	FindAllArtists() ([]models.Artist, error)
+	FindArtists(string) ([]models.Artist, error)
 	FindArtistByID(int) (models.Artist, error)
-	FindArtistByName(string) (models.Artist, error)
 	DeleteArtist(...models.Artist) error
 
 	CreateStudio(...*models.Studio) error
-	FindAllStudios() ([]models.Studio, error)
+	FindStudios(string) ([]models.Studio, error)
 	FindStudioByID(int) (models.Studio, error)
-	FindStudioByName(string) (models.Studio, error)
 	DeleteStudio(...models.Studio) error
 
 	CreateTag(...*models.Tag) error
-	FindAllTags() ([]models.Tag, error)
+	FindTags(string) ([]models.Tag, error)
 	FindTagByID(int) (models.Tag, error)
-	FindTagByValue(string) (models.Tag, error)
 	DeleteTag(...models.Tag) error
 
 	CreateMedia(...*models.AudioMedia) error
-	FindAllMedia() ([]models.AudioMedia, error)
+	FindMedia() ([]models.AudioMedia, error)
 	FindMediaByID(int) (models.AudioMedia, error)
-	// FindMedia(models.AudioMedia) ([]models.AudioMedia, error)
 	DeleteMedia(...models.AudioMedia) error
 }
 

@@ -49,16 +49,3 @@ func NewStorageGorm() (MediaStorageGorm, error) {
 	storage.db = db
 	return storage, nil
 }
-
-// func (s *StorageGorm) SaveMedia(...*AudioMedia) error {
-
-// }
-// func (s *StorageGorm) FindMedia() ([]AudioMedia, error) {
-
-// }
-// func (s *StorageGorm) FindMediaByID(int) (AudioMedia, error) {
-
-// }
-// func (s *StorageGorm) DeleteMedia(...AudioMedia) error {
-
-// }
