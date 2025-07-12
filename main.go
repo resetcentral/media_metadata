@@ -25,5 +25,10 @@ func main() {
 	router.POST("/studio", handlers.PostStudio)
 	router.DELETE("/studio/:id", handlers.DeleteStudio)
 
+	router.GET("/tag", handlers.GetTags)
+	router.GET("/tag/:id", handlers.GetTagByID)
+	router.POST("/tag", handlers.PostTag)
+	router.DELETE("/tag/:id", handlers.DeleteTag)
+
 	router.Run("localhost:8000")
 }

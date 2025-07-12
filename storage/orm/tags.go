@@ -22,7 +22,7 @@ func (s MediaStorageGorm) FindTags(search string) ([]models.Tag, error) {
 	db := s.db
 	if search != "" {
 		search = fmt.Sprintf("%%%s%%", search)
-		db = db.Where("name LIKE ?", search)
+		db = db.Where("value LIKE ?", search)
 	}
 
 	result := db.Find(&tags)
