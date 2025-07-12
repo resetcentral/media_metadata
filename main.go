@@ -19,5 +19,11 @@ func main() {
 	router.GET("/artist/:id", handlers.GetArtistByID)
 	router.POST("/artist", handlers.PostArtist)
 	router.DELETE("/artist/:id", handlers.DeleteArtist)
+
+	router.GET("/studio", handlers.GetStudios)
+	router.GET("/studio/:id", handlers.GetStudioByID)
+	router.POST("/studio", handlers.PostStudio)
+	router.DELETE("/studio/:id", handlers.DeleteStudio)
+
 	router.Run("localhost:8000")
 }
