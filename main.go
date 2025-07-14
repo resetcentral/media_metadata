@@ -30,5 +30,8 @@ func main() {
 	router.POST("/tag", handlers.PostTag)
 	router.DELETE("/tag/:id", handlers.DeleteTag)
 
+	router.POST("/media", handlers.PostMedia)
+	// router.GET("/media/audio/:id")
+
 	router.Run("localhost:8000")
 }
