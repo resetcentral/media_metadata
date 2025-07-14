@@ -23,10 +23,10 @@ type MediaStorage interface {
 	FindTagByID(int) (models.Tag, error)
 	DeleteTag(...models.Tag) error
 
-	CreateMedia(...*models.AudioMedia) error
-	FindMedia() ([]models.AudioMedia, error)
-	FindMediaByID(int) (models.AudioMedia, error)
-	DeleteMedia(...models.AudioMedia) error
+	CreateMedia(...*models.Media) error
+	FindMedia() ([]models.Media, error)
+	FindMediaByID(int) (models.Media, error)
+	DeleteMedia(...models.Media) error
 }
 
 func NewStorage() error {

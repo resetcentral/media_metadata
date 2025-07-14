@@ -40,7 +40,9 @@ func NewStorageGorm() (MediaStorageGorm, error) {
 	db.AutoMigrate(&models.Artist{})
 	db.AutoMigrate(&models.Studio{})
 	db.AutoMigrate(&models.Tag{})
-	err = db.AutoMigrate(&models.AudioMedia{})
+	db.AutoMigrate(&models.AudioMetadata{})
+	db.AutoMigrate(&models.VideoMetadata{})
+	err = db.AutoMigrate(&models.Media{})
 
 	if err != nil {
 		return storage, err

@@ -21,18 +21,34 @@ type Tag struct {
 	Value string `gorm:"uniqueIndex;size:256"`
 }
 
-type AudioMedia struct {
+type AudioMetadata struct {
+	gorm.Model
+	AudioCodec    string
+	AudioChannels uint
+	MediaID       uint
+}
+
+type VideoMetadata struct {
+	gorm.Model
+	Width      uint
+	Height     uint
+	VideoCodec string
+	Framerate  float64
+	MediaID    uint
+}
+
+type Media struct {
 	gorm.Model
 	Title         string `gorm:"index;size:256"`
 	Description   string
 	FilePath      string `gorm:"unique"`
 	Studio        Studio
-	StudioID      int
+	StudioID      uint
 	Artists       []Artist `gorm:"many2many:media_artists;"`
 	ReleaseDate   time.Time
 	Tags          []Tag `gorm:"many2many:media_tags;"`
 	Length        time.Duration
 	Container     string
-	AudioCodec    string
-	AudioChannels int
+	AudioMetadata AudioMetadata
+	VideoMetadata VideoMetadata
 }
